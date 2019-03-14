@@ -21,6 +21,7 @@ public class FileReadMasterAgent {
 	}
 
 	public synchronized List<SpeedRegister> getAndCleanSpeedRegisterBuffer() {
+		System.out.println("Master Agent providing data....:" + speedRegisterBuffer.size());
 		List<SpeedRegister> registersToReturn = new Vector<SpeedRegister>(); 
 		registersToReturn.addAll(speedRegisterBuffer);
 		speedRegisterBuffer.clear();

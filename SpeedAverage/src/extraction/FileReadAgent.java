@@ -15,7 +15,7 @@ public class FileReadAgent extends Thread{
 	public void run() {
 		
 		while(true) {
-			masterAgent.addRegister(new SpeedRegister(System.currentTimeMillis(),200,fileLocation));
+			masterAgent.addRegister(new SpeedRegister(System.currentTimeMillis(),190 + Math.random()*20,fileLocation));
 			try {
 				sleep(1000);
 			} catch (InterruptedException e) {
