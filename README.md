@@ -11,9 +11,11 @@ This projects aims to be an example of complet ETL based in:
 ### Data source
 
 As said it will be extracted from files. To have some low-load example you can run an instance of the program Sensor File Generator (already on this repository)
-It is interesting to check that Sensor File Generator can be configured to write simultaniusly from 1 to N files.
-The data meaning is a two colums CSV where first column is a timestamp meanwhile second column is a sensor register. In the scenario, different sensors capture and send data, so for the same timestamp we can have different values on each sensor
-The objective of this process then, is to get an average based on timestamp. To do easy to understand the code, each register it is supossed to get velocity
+
+The data is composed by two colums CSV where first column is a timestamp meanwhile second column is a sensor register. In the scenario, different sensors capture and send data, so for the same timestamp we can have different values on each sensor, due to an error on the register.
+
+The objective of this process then, is to get an average based on timestamp. Even this code has a more generic propse, to do it easy to understand, each line of the file we can consider as speed value (naming of the classes are aligned with it)
+
 There is an additional restriction. We had to cover the case that sensors could had a black-out and send data some seconds later.
 
 ### Transformation
@@ -22,18 +24,15 @@ The manipulation of data is simple. For a unique key (or timestamp) we are going
 
 ### Extraction
 
-For each block on a separated thread. Each file will have a suffix with an incremental number starting from 1. Exceptionaly, the first loop will have all data from the beginning of the file until now.
-I had done the assumption that everything can be processed on the first loop.
+For each block on a separated thread. Each file will have a suffix with an incremental number starting from 1. Exceptionaly, the first loop will have all data from the beginning of the file until the instance had been rose. I had done the assumption that everything can be processed before the first loop ends.
 
 ## Algorithms
 
 ### File Read Processors
 
-We could consider that there are 2 files we want to read from. This files get incremental data, recurrently. Then, we are forced to develop using threads.
-As the output should be save on shared data, the best is to have a Master Agent, corditing threads and storing as a Buffer the registers of the sensors.
+We could consider that there are 2 files we want to read from. This files get incremental data, recurrently. Then, we are forced to develop using threads. As the output should be save on shared data, the best is to have a Master Agent, corditing threads and storing on a Buffer the registers of the sensors.
 
-I had call them FileReadAgent and FileReadMasterAgent. The second one is composed of a constructor that is able to instanciate N agents. The buffer is a Vector, so we can warranty by default the concurrent access.
-The function getAndCleanSpeedRegisterBuffer will allow to the main program to optain and clean all the added data from the last loop.
+I had call them FileReadAgent and FileReadMasterAgent. The second one is composed of a constructor that is able to instanciate N agents. The buffer is a Vector, so we can warranty by default the concurrent access. The function getAndCleanSpeedRegisterBuffer will allow to the main program to optain and clean all the added data from the last loop.
 
 As we had allowed our code to have N threads reading N files, I had listed it on the variable agentList. This complement the pattern allowing the communication between threads, but it is not needed this time.
 
