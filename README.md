@@ -92,5 +92,3 @@ PD: In case you have any problem with the final generator substitute the functio
 ### From a console (Windows terminal)
 
 Clone the repository and you will see that you have two folders, one for the "sensor file generator" and the other for the "speed average". It is important to keep this structure because "sensor file generator" will append the values on files under the "speed average" project.
-
-For next steps I assume you have maven installed, otherwise follow this steps: https://tutorials.visualstudio.com/Java/hello-world/install-maven
