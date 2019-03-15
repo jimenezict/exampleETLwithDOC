@@ -71,4 +71,19 @@ Once it is clone from the repository do a maven clean install for upgrading the 
 
 Run the "SensorFileGenerator" and check how are genearted the files "SpeedSensor1.csv" and "SpeedSensor2.csv" on the root of the project "Speed Average". This first micro project has to be stoped manually.
 
-Keep some seconds running to have some data for the testing of the first loop and run the "Speed Average" project. You will see on the console the statistics of each loop. So, volume extracted from the agents, number of register inserted on the output file and number of registers kept for the next round (do to the buffering)  
+Keep some seconds running to have some data for the testing of the first loop and run the "Speed Average" project. You will see on the console the statistics of each loop. So, volume extracted from the agents, number of register inserted on the output file and number of registers kept for the next round (do to the buffering).
+
+Here a console log sample:
+
+Master Agent providing data....:24
+Loop Number: 0, Actual Number: 24, To Process Registers: 24, Next RoundRegisters: 0
+Ready for writing in: AverageSpeed_0 with size 12
+Master Agent providing data....:20
+Loop Number: 1, Actual Number: 20, To Process Registers: 20, Next RoundRegisters: 0
+Ready for writing in: AverageSpeed_1 with size 10
+Master Agent providing data....:20
+Loop Number: 2, Actual Number: 20, To Process Registers: 20, Next RoundRegisters: 0
+Ready for writing in: AverageSpeed_2 with size 10
+
+PD: In case you have any problem with the final generator substitute the function inside the run of the "FileReadAgent" by the function "randomFunction".
+
