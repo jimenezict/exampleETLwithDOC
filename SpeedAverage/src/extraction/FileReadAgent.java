@@ -22,9 +22,14 @@ public class FileReadAgent extends Thread{
 	}
 	
 	private void addNewRegister(String line) {
-		long timestamp = new Long(line.split(",")[0]);
-		double velocity = new Double(line.split(",")[1]);
-		masterAgent.addRegister(new SpeedRegister(timestamp,velocity,fileLocation));
+		if(line!=null && line.length() >0 && line.contains(",")) {
+			long timestamp = new Long(line.split(",")[0]);
+			double velocity = new Double(line.split(",")[1]);
+			masterAgent.addRegister(new SpeedRegister(timestamp,velocity,fileLocation));
+		}else {
+			System.out.println("Not valid line detected");
+		}
+		
 	}
 	
 	private void randomFunction() throws InterruptedException {
