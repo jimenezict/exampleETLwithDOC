@@ -78,12 +78,19 @@ Here a console log sample:
 Master Agent providing data....:24
 Loop Number: 0, Actual Number: 24, To Process Registers: 24, Next RoundRegisters: 0
 Ready for writing in: AverageSpeed_0 with size 12
+
 Master Agent providing data....:20
 Loop Number: 1, Actual Number: 20, To Process Registers: 20, Next RoundRegisters: 0
 Ready for writing in: AverageSpeed_1 with size 10
+
 Master Agent providing data....:20
 Loop Number: 2, Actual Number: 20, To Process Registers: 20, Next RoundRegisters: 0
 Ready for writing in: AverageSpeed_2 with size 10
 
 PD: In case you have any problem with the final generator substitute the function inside the run of the "FileReadAgent" by the function "randomFunction".
 
+### From a console (Windows terminal)
+
+Clone the repository and you will see that you have two folders, one for the "sensor file generator" and the other for the "speed average". It is important to keep this structure because "sensor file generator" will append the values on files under the "speed average" project.
+
+For next steps I assume you have maven installed, otherwise follow this steps: https://tutorials.visualstudio.com/Java/hello-world/install-maven
