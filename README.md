@@ -63,3 +63,12 @@ But this is not risky, as each loop is 10 seconds, it could be useful for shorte
 * In case that some sensor doesn't send data for some seconds to the file, we are not going to lose it or have the same timestamp on different output files
 * Lambda expression simplifies a lot over imperative language
 
+## Instructions from the execution
+
+### From an IDE
+
+Once it is clone from the repository do a maven clean install for upgrading the .m2 folder. The only dependencies are for the Junit and this doesn't affect on runtime, so it is not so important.
+
+Run the "SensorFileGenerator" and check how are genearted the files "SpeedSensor1.csv" and "SpeedSensor2.csv" on the root of the project "Speed Average". This first micro project has to be stoped manually.
+
+Keep some seconds running to have some data for the testing of the first loop and run the "Speed Average" project. You will see on the console the statistics of each loop. So, volume extracted from the agents, number of register inserted on the output file and number of registers kept for the next round (do to the buffering)  
