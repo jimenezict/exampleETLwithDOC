@@ -6,7 +6,6 @@ public class SensorThread extends Thread {
 	
 	private String sensorFileName;
 	FileOutputStream fos;
-	int i=10;
 
 	SensorThread(String sensorFileName){
 		this.sensorFileName = sensorFileName;
@@ -23,11 +22,10 @@ public class SensorThread extends Thread {
 			e1.printStackTrace();
 		}
 				
-		while(i>0) {
+		while(true) {
 			try {
-				fos.write((System.currentTimeMillis()/1000 + ";" + noisedvelocity() + "\r\n").getBytes());
+				fos.write((System.currentTimeMillis()/1000 + "," + noisedvelocity() + "\r\n").getBytes());
 				sleep(1000);
-				i--;
 			} catch (IOException e1) {
 				e1.printStackTrace();
 				break;

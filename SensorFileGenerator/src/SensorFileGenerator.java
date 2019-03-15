@@ -2,7 +2,7 @@
 public class SensorFileGenerator {
 
 	public static void main(String[] args) {
-		String filePatern = "SpeedSensor";
+		String filePatern = "../SpeedAverage/SpeedSensor";
 		SensorThread sensor_generator_1 = new SensorThread(filePatern + "1.csv" );
 		SensorThread sensor_generator_2 = new SensorThread(filePatern + "2.csv" );
 		
