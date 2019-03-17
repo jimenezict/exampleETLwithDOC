@@ -55,6 +55,13 @@ It is not mandatory, but each time all average are calculated, it is better to g
 
 But this is not risky, as each loop is 10 seconds, it could be useful for shorter laces.
 
+### Unmutable POJO's
+
+We have two type of POJO on this code. One for the lecture of a file, that has a identifier of the sensor, timestamp and value. And another one with as an output of the average processor. Both had not sense to be altered after they are created, so, values will be fix at the moment of creation of the instance. This is possible:
+* All fields are private
+* There is a constructor with all the fields.
+* There are only getters to access the fields but not setters for altering the value
+
 ## Benefits
 
 * Allows to scalate it to N sensors
