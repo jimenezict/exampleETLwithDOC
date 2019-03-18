@@ -55,9 +55,16 @@ It is not mandatory, but each time all average are calculated, it is better to g
 
 But this is not risky, as each loop is 10 seconds, it could be useful for shorter laces.
 
+### Unmutable POJO's
+
+We have two type of POJO on this code. One for the lecture of a file, that has a identifier of the sensor, timestamp and value. And another one with as an output of the average processor. Both had not sense to be altered after they are created, so, values will be fix at the moment of creation of the instance. This is possible:
+* All fields are private
+* There is a constructor with all the fields.
+* There are only getters to access the fields but not setters for altering the value
+
 ## Benefits
 
-* Allows to scalate it to N sensors
+* Allows to escalate it to N sensors
 * Each loop the memory intermediate memory is clean, so, we are not going to suffer for memory collapse for long time executions.
 * As we are continusly reading from the files on separeted threads, it is very hard to have a delay on the flow or lose the last registers of the block.
 * In case that some sensor doesn't send data for some seconds to the file, we are not going to lose it or have the same timestamp on different output files
@@ -78,12 +85,19 @@ Here a console log sample:
 Master Agent providing data....:24
 Loop Number: 0, Actual Number: 24, To Process Registers: 24, Next RoundRegisters: 0
 Ready for writing in: AverageSpeed_0 with size 12
+
 Master Agent providing data....:20
 Loop Number: 1, Actual Number: 20, To Process Registers: 20, Next RoundRegisters: 0
 Ready for writing in: AverageSpeed_1 with size 10
+
 Master Agent providing data....:20
 Loop Number: 2, Actual Number: 20, To Process Registers: 20, Next RoundRegisters: 0
 Ready for writing in: AverageSpeed_2 with size 10
 
 PD: In case you have any problem with the final generator substitute the function inside the run of the "FileReadAgent" by the function "randomFunction".
 
+### From a console (Windows terminal)
+
+Clone the repository and you will see that you have two folders, one for the "sensor file generator" and the other for the "speed average". It is important to keep this structure because "sensor file generator" will append the values on files under the "speed average" project.
+
+TBD
