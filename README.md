@@ -64,7 +64,7 @@ We have two type of POJO on this code. One for the lecture of a file, that has a
 
 ## Benefits
 
-* Allows to scalate it to N sensors
+* Allows to escalate it to N sensors
 * Each loop the memory intermediate memory is clean, so, we are not going to suffer for memory collapse for long time executions.
 * As we are continusly reading from the files on separeted threads, it is very hard to have a delay on the flow or lose the last registers of the block.
 * In case that some sensor doesn't send data for some seconds to the file, we are not going to lose it or have the same timestamp on different output files
