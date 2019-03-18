@@ -13,7 +13,7 @@ public class SpeedAverage {
 		
 		List<SpeedRegister> toProcessRegisters = new ArrayList<SpeedRegister>();
 		List<SpeedRegister> nextRoundRegisters = new ArrayList<SpeedRegister>();
-		long initialTimestamp = System.currentTimeMillis();
+		long initialTimestamp = System.currentTimeMillis()/1000;
 
 		final int numberOfAgents = 2;
 		FileReadMasterAgent m = new FileReadMasterAgent(numberOfAgents);
