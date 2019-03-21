@@ -7,16 +7,15 @@ import java.util.Map.Entry;
 
 import pojo.OutputAverageRegister;
 
-public class LoadService {
+public class FileLoadService implements ILoadService{
 
-	public static void saveFile(Map<Long, Double> averagesOnPeriod, int i) {
+	public void save(Map<Long, Double> averagesOnPeriod, int i) {
 		List<OutputAverageRegister> outputAverageRegisterList = new ArrayList<OutputAverageRegister>();
 		
 		for (Entry<Long, Double> entry : averagesOnPeriod.entrySet())
 			outputAverageRegisterList.add(new OutputAverageRegister(entry.getKey(),entry.getValue()));
 		
-		(new LoadAgent(outputAverageRegisterList,i)).start();
+		(new FileLoadAgent(outputAverageRegisterList,i)).start();
 	}
-
 
 }

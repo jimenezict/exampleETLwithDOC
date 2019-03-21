@@ -9,9 +9,9 @@ import java.util.stream.Collectors;
 
 import pojo.SpeedRegister;
 
-public class TransformationService {
+public class AverageTransformationService implements ITransformationService {
 
-	public static Map<Long, Double> getAveragesByTimestamp(List<SpeedRegister> mainList) {
+	public Map<Long, Double> applyTransformation(List<SpeedRegister> mainList) {
 		Map<Long, Double> averageRoundList = mainList
 				.stream()
 				.sorted(Comparator.comparing(SpeedRegister::getTimestamp))
@@ -19,7 +19,7 @@ public class TransformationService {
 		return averageRoundList;		
 	}
 
-	public static List<SpeedRegister> nextRoundList(List<SpeedRegister> mainList, long initialTimestamp) {
+	public List<SpeedRegister> nextRoundList(List<SpeedRegister> mainList, long initialTimestamp) {
 		List<SpeedRegister> nextRoundList = mainList
 				.stream()
 				.filter(speedRegister -> speedRegister.getTimestamp() > initialTimestamp)
@@ -27,7 +27,7 @@ public class TransformationService {
 		return nextRoundList;
 	}
 	
-	public static List<SpeedRegister> mainFrameList(List<SpeedRegister> mainList, long initialTimestamp) {
+	public List<SpeedRegister> mainFrameList(List<SpeedRegister> mainList, long initialTimestamp) {
 		List<SpeedRegister> mainListToReturn = mainList
 				.stream()
 				.filter(speedRegister -> speedRegister.getTimestamp() <= initialTimestamp)

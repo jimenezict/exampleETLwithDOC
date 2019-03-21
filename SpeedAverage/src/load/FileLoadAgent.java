@@ -10,11 +10,11 @@ import java.util.List;
 import pojo.OutputAverageRegister;
 import pojo.SpeedRegister;
 
-public class LoadAgent extends Thread{
+public class FileLoadAgent extends Thread{
 	private List<OutputAverageRegister> output = new ArrayList<OutputAverageRegister>();
 	private BufferedWriter writer;
 	
-	LoadAgent(List<OutputAverageRegister> output,int i){
+	FileLoadAgent(List<OutputAverageRegister> output,int i){
 		this.output = output;
 		try {
 			writer = new BufferedWriter(new FileWriter("AverageSpeed_"+i));

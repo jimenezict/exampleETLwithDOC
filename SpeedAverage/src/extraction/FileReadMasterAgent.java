@@ -11,11 +11,11 @@ public class FileReadMasterAgent {
 	private Vector<SpeedRegister> speedRegisterBuffer;
 	private List<FileReadAgent> agentList;
 	
-	public FileReadMasterAgent(int numberOfAgents) {
+	public FileReadMasterAgent(int numberOfAgents, String namepatern) {
 		agentList = new ArrayList<FileReadAgent>();
 		speedRegisterBuffer = new Vector<SpeedRegister>();
 		for(int i=1;i<numberOfAgents+1;i++) {
-			agentList.add(new FileReadAgent("SpeedSensor" + i,this));
+			agentList.add(new FileReadAgent(namepatern + i,this));
 			agentList.get(i-1).start();
 		}
 	}
