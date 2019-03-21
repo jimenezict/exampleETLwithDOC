@@ -31,7 +31,7 @@ public class SpeedAverage {
 					", Next RoundRegisters: " + nextRoundRegisters.size());
 			LoadService.saveFile(TransformationService.getAveragesByTimestamp(toProcessRegisters),i);
 			TimeUnit.SECONDS.sleep(10);
-			initialTimestamp = initialTimestamp + 10000;
+			initialTimestamp = initialTimestamp + 10;
 			i++;
 		}while(true);
 	}		
