@@ -28,11 +28,11 @@ public class TransformationService {
 	}
 	
 	public static List<SpeedRegister> mainFrameList(List<SpeedRegister> mainList, long initialTimestamp) {
-		mainList = mainList
+		List<SpeedRegister> mainListToReturn = mainList
 				.stream()
 				.filter(speedRegister -> speedRegister.getTimestamp() <= initialTimestamp)
 				.collect(toList());
-		return mainList;
+		return mainListToReturn;
 	}
 
 }

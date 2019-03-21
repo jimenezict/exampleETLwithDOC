@@ -33,8 +33,7 @@ public class FileReadAgent extends Thread{
 	}
 	
 	private void randomFunction() throws InterruptedException {
-		masterAgent.addRegister(new SpeedRegister(System.currentTimeMillis(),190 + Math.random()*20,fileLocation));
-		sleep(1000);
+		masterAgent.addRegister(new SpeedRegister(System.currentTimeMillis(),190 + Math.random()*20,fileLocation));		
 	}
 	
 	private void incrementalFileReading() throws IOException, InterruptedException {
@@ -42,7 +41,6 @@ public class FileReadAgent extends Thread{
 		    List<String> latestLines = lines.skip(startLine).collect(toList());
 		    startLine =  startLine + latestLines.stream().count();
 		    latestLines.stream().forEach(line -> addNewRegister(line));
-		    sleep(1000);
 		}
 	}	
 
@@ -50,6 +48,7 @@ public class FileReadAgent extends Thread{
 		while(true) {
 			try {
 				incrementalFileReading();
+				sleep(1000);
 			} catch (InterruptedException | IOException e) {
 				System.out.println("Error on the Read Agent");
 				e.printStackTrace();
