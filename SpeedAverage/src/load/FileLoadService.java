@@ -17,5 +17,9 @@ public class FileLoadService implements ILoadService{
 		
 		(new FileLoadAgent(outputAverageRegisterList,i)).start();
 	}
+	
+	public void switchOff() {
+		System.out.println("Switching Off File Load");
+	}
 
 }

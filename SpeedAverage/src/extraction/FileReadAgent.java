@@ -15,6 +15,7 @@ public class FileReadAgent extends Thread{
 	FileReadMasterAgent masterAgent;
 	String fileLocation;
 	long startLine = 0;
+	boolean running = true;
 	
 	FileReadAgent(String fileLocation, FileReadMasterAgent masterAgent) {
 		this.masterAgent = masterAgent;
@@ -39,8 +40,12 @@ public class FileReadAgent extends Thread{
 		}
 	}	
 
+	public void switchOff() {
+		running = false;
+	}
+	
 	public void run() {		
-		while(true) {
+		while(running) {
 			try {
 				incrementalFileReading();
 				sleep(1000);
@@ -49,5 +54,6 @@ public class FileReadAgent extends Thread{
 				e.printStackTrace();
 			}
 		}		
+		System.out.println("Finalizing Thread " + fileLocation);
 	}
 }

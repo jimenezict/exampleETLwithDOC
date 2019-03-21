@@ -36,8 +36,7 @@ public class FileReadMasterAgent {
 
 	public void switchOff() {
 		for(int i=0;i<numberOfAgents;i++) {
-			agentList.get(i).interrupt();
-		}		
+			agentList.get(i).switchOff();
+		}
 	}
-
 }

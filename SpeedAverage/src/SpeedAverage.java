@@ -44,7 +44,7 @@ public class SpeedAverage {
 			i++;
 		}while(i<1);
 		
-		close();
+		switchOff();
 	}
 
 	private static void initialize() {
@@ -57,7 +57,8 @@ public class SpeedAverage {
 		extractorService.extractorConfigurer(parameters);
 	}
 	
-	private static void close() {
+	private static void switchOff() {
 		extractorService.switchOff();
+		loadService.switchOff();
 	}	
 }
