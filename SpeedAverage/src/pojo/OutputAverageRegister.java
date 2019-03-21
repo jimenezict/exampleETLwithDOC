@@ -1,17 +1,12 @@
 package pojo;
 
-public class OutputAverageRegister {
+public class OutputAverageRegister extends Register{
 	
-	private long timestamp;
 	private double velocity;
 	
 	public OutputAverageRegister(long l, double i){
 		this.timestamp = l;
 		this.velocity = i;
-	}
-	
-	public long getTimestamp() {
-		return timestamp;
 	}
 	
 	public Double getVelocity() {

@@ -1,9 +1,10 @@
-package extraction;
+package extraction.SensorFile;
 
 import java.util.List;
 import java.util.Map;
 
-import pojo.SpeedRegister;
+import extraction.IExtractorService;
+import pojo.SensorRegister;
 
 public class FileExtractorService implements IExtractorService{
 	
@@ -15,8 +16,8 @@ public class FileExtractorService implements IExtractorService{
 	}
 
 	@Override
-	public List<SpeedRegister> getAndCleanSpeedRegisterBuffer() {
-		return f.getAndCleanSpeedRegisterBuffer();
+	public List<SensorRegister> getAndCleanBuffer() {
+		return f.getAndCleanBuffer();
 	}
 
 	@Override

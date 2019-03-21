@@ -8,39 +8,40 @@ import java.util.Map;
 import org.junit.Before;
 import org.junit.Test;
 
-import pojo.SpeedRegister;
+import pojo.SensorRegister;
 import transformation.AverageTransformationService;
+import transformation.TransformationUtils;
 
 public class AggregatorServiceTest {
-	List<SpeedRegister> spTest = new ArrayList<SpeedRegister>();
-	List<SpeedRegister> spTest2 = new ArrayList<SpeedRegister>();
+	List<SensorRegister> spTest = new ArrayList<SensorRegister>();
+	List<SensorRegister> spTest2 = new ArrayList<SensorRegister>();
 	AverageTransformationService agg = new AverageTransformationService();
 	
 	@Before public void initialize() {
-		spTest = new ArrayList<SpeedRegister>();
-		spTest.add(new SpeedRegister(1, 200, "filesource0"));
-		spTest.add(new SpeedRegister(2, 210, "filesource0"));
-		spTest.add(new SpeedRegister(2, 205, "filesource0"));
-		spTest.add(new SpeedRegister(3, 200, "filesource0"));
-		spTest.add(new SpeedRegister(3, 190, "filesource0"));
+		spTest = new ArrayList<SensorRegister>();
+		spTest.add(new SensorRegister(1, 200, "filesource0"));
+		spTest.add(new SensorRegister(2, 210, "filesource0"));
+		spTest.add(new SensorRegister(2, 205, "filesource0"));
+		spTest.add(new SensorRegister(3, 200, "filesource0"));
+		spTest.add(new SensorRegister(3, 190, "filesource0"));
 		
-		spTest2 = new ArrayList<SpeedRegister>();		
-		spTest2.add(new SpeedRegister(2, 205, "filesource0"));
-		spTest2.add(new SpeedRegister(3, 200, "filesource0"));
-		spTest2.add(new SpeedRegister(1, 200, "filesource0"));
-		spTest2.add(new SpeedRegister(3, 190, "filesource0"));
-		spTest2.add(new SpeedRegister(2, 210, "filesource0"));
+		spTest2 = new ArrayList<SensorRegister>();		
+		spTest2.add(new SensorRegister(2, 205, "filesource0"));
+		spTest2.add(new SensorRegister(3, 200, "filesource0"));
+		spTest2.add(new SensorRegister(1, 200, "filesource0"));
+		spTest2.add(new SensorRegister(3, 190, "filesource0"));
+		spTest2.add(new SensorRegister(2, 210, "filesource0"));
 	}
 	
 	@Test
 	public void nextRoundListTest(){
-		List<SpeedRegister> spNextRoundTest = agg.nextRoundList(spTest,2);
+		List<SensorRegister> spNextRoundTest = (List<SensorRegister>) TransformationUtils.nextRoundList(spTest,2);
 		assertEquals(spNextRoundTest.size(),2);
 	}
 	
 	@Test
 	public void mainFrameListTest(){
-		List<SpeedRegister> spMainFrameTest = agg.mainFrameList(spTest,2);
+		List<SensorRegister> spMainFrameTest = (List<SensorRegister>) TransformationUtils.mainFrameList(spTest,2);
 		assertEquals(spMainFrameTest.size(),3);
 	}
 	

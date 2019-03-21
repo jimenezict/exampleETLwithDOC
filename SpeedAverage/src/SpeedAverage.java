@@ -4,13 +4,14 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
-import extraction.FileExtractorService;
 import extraction.IExtractorService;
+import extraction.SensorFile.FileExtractorService;
 import load.FileLoadService;
 import load.ILoadService;
-import pojo.SpeedRegister;
+import pojo.Register;
 import transformation.AverageTransformationService;
 import transformation.ITransformationService;
+import transformation.TransformationUtils;
 
 public class SpeedAverage {
 	
@@ -20,9 +21,10 @@ public class SpeedAverage {
 
 	public static void main(String[] args) throws InterruptedException {
 		
-		List<SpeedRegister> toProcessRegisters = new ArrayList<SpeedRegister>();
-		List<SpeedRegister> nextRoundRegisters = new ArrayList<SpeedRegister>();
-		long initialTimestamp = System.currentTimeMillis()/1000;		
+		List<? extends Register> toProcessRegisters = new ArrayList<Register>();
+		List<? extends Register> nextRoundRegisters = new ArrayList<Register>();
+		long initialTimestamp = System.currentTimeMillis()/1000;
+		Integer iterations = 3;
 		
 		initialize();
 		
@@ -30,10 +32,9 @@ public class SpeedAverage {
 		TimeUnit.SECONDS.sleep(3);
 		
 		do {
-			List<SpeedRegister> actualRoundRegisters = extractorService.getAndCleanSpeedRegisterBuffer();
-			actualRoundRegisters.addAll(nextRoundRegisters);
-			toProcessRegisters = transformationService.mainFrameList(actualRoundRegisters, initialTimestamp);
-			nextRoundRegisters = transformationService.nextRoundList(actualRoundRegisters, initialTimestamp);
+			List<? extends Register> actualRoundRegisters = extractorService.getAndCleanBuffer();
+			toProcessRegisters = TransformationUtils.mainFrameList(actualRoundRegisters, initialTimestamp);
+			nextRoundRegisters = TransformationUtils.nextRoundList(actualRoundRegisters, initialTimestamp);
 			System.out.println("Loop Number: " + i + 
 					", Actual Number: " + actualRoundRegisters.size() +
 					", To Process Registers: " + toProcessRegisters.size() +
@@ -42,7 +43,7 @@ public class SpeedAverage {
 			TimeUnit.SECONDS.sleep(10);
 			initialTimestamp = initialTimestamp + 10;
 			i++;
-		}while(i<1);
+		}while(i<iterations);
 		
 		switchOff();
 	}
