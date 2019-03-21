@@ -49,13 +49,37 @@ public class SpeedAverage {
 	}
 
 	private static void initialize() {
-		loadService = new FileLoadService();
-		transformationService = new AverageTransformationService();
 		Map<String, Object> parameters = new HashMap<String,Object>();
 		parameters.put("threads", 2);
 		parameters.put("filepatern", "SpeedSensor");
-		extractorService  = new FileExtractorService();		
+		extractorService  = extractorFactory(0);		
 		extractorService.extractorConfigurer(parameters);
+		loadService = loadFactory(0);
+		transformationService = transformationService(0);
+	}
+	
+	private static IExtractorService extractorFactory(int type) {
+		switch(type) {
+			case 0:
+				return new FileExtractorService();
+		}
+		return null;				
+	}
+	
+	private static ILoadService loadFactory(int type) {
+		switch(type) {
+			case 0:
+				return new FileLoadService();
+		}
+		return null;				
+	}
+	
+	private static ITransformationService transformationService(int type) {
+		switch(type) {
+			case 0:
+				return new AverageTransformationService();
+		}
+		return null;				
 	}
 	
 	private static void switchOff() {
