@@ -14,6 +14,7 @@ import transformation.AverageTransformationService;
 public class AggregatorServiceTest {
 	List<SpeedRegister> spTest = new ArrayList<SpeedRegister>();
 	List<SpeedRegister> spTest2 = new ArrayList<SpeedRegister>();
+	AverageTransformationService agg = new AverageTransformationService();
 	
 	@Before public void initialize() {
 		spTest = new ArrayList<SpeedRegister>();
@@ -33,19 +34,19 @@ public class AggregatorServiceTest {
 	
 	@Test
 	public void nextRoundListTest(){
-		List<SpeedRegister> spNextRoundTest = AverageTransformationService.nextRoundList(spTest,2);
+		List<SpeedRegister> spNextRoundTest = agg.nextRoundList(spTest,2);
 		assertEquals(spNextRoundTest.size(),2);
 	}
 	
 	@Test
 	public void mainFrameListTest(){
-		List<SpeedRegister> spMainFrameTest = AverageTransformationService.mainFrameList(spTest,2);
+		List<SpeedRegister> spMainFrameTest = agg.mainFrameList(spTest,2);
 		assertEquals(spMainFrameTest.size(),3);
 	}
 	
 	@Test
 	public void getAveragesOnPeriodTest(){
-		Map<Long,Double> spAverageTest = AverageTransformationService.getAveragesByTimestamp(spTest);
+		Map<Long,Double> spAverageTest = agg.applyTransformation(spTest);
 		assertTrue(spAverageTest.get(1L) == 200);
 		assertTrue(spAverageTest.get(2L) == 207.5);
 		assertTrue(spAverageTest.get(3L) == 195);
@@ -53,7 +54,7 @@ public class AggregatorServiceTest {
 	
 	@Test
 	public void getAveragesOnPeriodDisordedTest(){
-		Map<Long,Double> spAverageTest = AverageTransformationService.getAveragesByTimestamp(spTest2);
+		Map<Long,Double> spAverageTest = agg.applyTransformation(spTest2);
 		assertTrue(spAverageTest.get(1L) == 200);
 		assertTrue(spAverageTest.get(2L) == 207.5);
 		assertTrue(spAverageTest.get(3L) == 195);

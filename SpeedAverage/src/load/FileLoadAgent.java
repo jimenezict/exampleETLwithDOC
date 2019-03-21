@@ -8,7 +8,6 @@ import java.util.Comparator;
 import java.util.List;
 
 import pojo.OutputAverageRegister;
-import pojo.SpeedRegister;
 
 public class FileLoadAgent extends Thread{
 	private List<OutputAverageRegister> output = new ArrayList<OutputAverageRegister>();
