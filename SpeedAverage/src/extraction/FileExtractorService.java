@@ -19,4 +19,9 @@ public class FileExtractorService implements IExtractorService{
 		return f.getAndCleanSpeedRegisterBuffer();
 	}
 
+	@Override
+	public void switchOff() {
+		f.switchOff();		
+	}
+
 }

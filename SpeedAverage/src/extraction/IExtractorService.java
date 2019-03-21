@@ -10,5 +10,7 @@ public interface IExtractorService {
 	public void extractorConfigurer(Map<String,Object> parameters);
 	
 	public List<SpeedRegister> getAndCleanSpeedRegisterBuffer();
+	
+	public void switchOff();
 
 }

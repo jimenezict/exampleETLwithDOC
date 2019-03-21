@@ -28,12 +28,7 @@ public class FileReadAgent extends Thread{
 			masterAgent.addRegister(new SpeedRegister(timestamp,velocity,fileLocation));
 		}else {
 			System.out.println("Not valid line detected");
-		}
-		
-	}
-	
-	private void randomFunction() throws InterruptedException {
-		masterAgent.addRegister(new SpeedRegister(System.currentTimeMillis(),190 + Math.random()*20,fileLocation));		
+		}		
 	}
 	
 	private void incrementalFileReading() throws IOException, InterruptedException {

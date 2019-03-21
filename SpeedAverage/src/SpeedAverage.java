@@ -42,7 +42,9 @@ public class SpeedAverage {
 			TimeUnit.SECONDS.sleep(10);
 			initialTimestamp = initialTimestamp + 10;
 			i++;
-		}while(true);
+		}while(i<1);
+		
+		close();
 	}
 
 	private static void initialize() {
@@ -53,5 +55,9 @@ public class SpeedAverage {
 		parameters.put("filepatern", "SpeedSensor");
 		extractorService  = new FileExtractorService();		
 		extractorService.extractorConfigurer(parameters);
-	}		
+	}
+	
+	private static void close() {
+		extractorService.switchOff();
+	}	
 }
