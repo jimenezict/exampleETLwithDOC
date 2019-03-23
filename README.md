@@ -1,4 +1,4 @@
-# Functional Programming with ETL's and concurrent algorithms
+# Functional Programming with ETL's and concurrent algorithms (readme related to v1.0, currently on v2.0)
 Scheleton for real-time processing from files streaming
 
 This projects aims to be an example of complet ETL based in:
